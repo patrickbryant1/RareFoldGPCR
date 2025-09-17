@@ -1,4 +1,4 @@
-#RareFoldGPCR
+# RareFoldGPCR
 Structure Prediction and **Design of GPCR Agonists** with Noncanonical Amino Acids
 
 By transfer learning from [RareFold](https://github.com/patrickbryant1/RareFold) on
@@ -17,3 +17,22 @@ The RareFoldGPCR parameters for prediction and design are made available under t
 The design protocol is made available under the terms of the [CC BY-NC 4.0 license](https://creativecommons.org/licenses/by-nc/4.0/).
 
 **You may not use these files except in compliance with the licenses.**
+
+
+# Installation
+The entire installation takes <1 hour on a standard computer. \
+We assume you have CUDA12. For CUDA11, you will have to change the installation of some packages. \
+The runtime will depend on the GPU you have available and the size of the protein you are predicting. \
+On an NVIDIA A100 GPU, the prediction time is a few minutes on average.
+
+First install miniconda, see: https://docs.conda.io/projects/miniconda/en/latest/miniconda-install.html or https://docs.conda.io/projects/miniconda/en/latest/miniconda-other-installer-links.html
+
+```
+bash install_dependencies.sh
+```
+
+1. Install the RareFold environment
+2. Get the RareFold parameters for single-chain structure prediction
+3. Get the EvoBindRare parameters for binder design
+4. Get Uniclust for MSA search
+5. Install HHblits for MSA search
