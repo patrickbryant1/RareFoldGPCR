@@ -2,7 +2,6 @@
 #PDB file 6X18. The structural information can be used from this
 #file by setting what part of the natural peptide agonist (GLP-1) to scaffold.
 #It can also be ignored (e.g. for de novo cyclic design) by setting scaffold to "NA"
-
 BASE=. #Change this depending on your local path
 ##########First, let's process the input we need for the design##########
 PRED_ID=6X18
@@ -27,8 +26,11 @@ else
 fi
 
 #3. Make iput structural feats (if using) - these are the feats used for trainging as well
-python3 ./src/make_complex_gt_structural_feats.py --input_pdb $DATA_DIR/extracted_complex.pdb \
+python3 $BASE/src/make_complex_gt_structural_feats.py --input_pdb $DATA_DIR/extracted_complex.pdb \
 --outdir $DATA_DIR/
+
+#4. Make MSA feats
+--continue here--
 
 
 MSA_FEATS=$DATA_DIR/msa_features.pkl

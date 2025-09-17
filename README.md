@@ -36,3 +36,11 @@ bash install_dependencies.sh
 3. Get the EvoBindRare parameters for binder design
 4. Get Uniclust for MSA search
 5. Install HHblits for MSA search
+
+
+# Design using RareFoldGPCR
+Run the test case (a few minutes)
+```
+micromamba activate rarefold
+bash design.sh
+```

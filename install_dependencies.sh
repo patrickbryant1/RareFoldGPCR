@@ -1,11 +1,11 @@
 #Install conda env
-conda env create -f environment.yml
+micromamba env create -f environment.yml
 
 wait
-conda activate rarefold
+micromamba activate rarefold
 pip install -q --no-warn-conflicts numpy==1.26.4
 pip install -q --no-warn-conflicts 'jax[cuda12_pip]'==0.4.35 -f https://storage.googleapis.com/jax-releases/jax_cuda_releases.html
-conda deactivate
+micromamba deactivate
 
 ## Get network parameters for RareFoldGPCR (a few minutes)
 ZENODO=https://zenodo.org/uploads/15180406/files
