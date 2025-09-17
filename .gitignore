@@ -1,0 +1,6 @@
+src/__pycache__/
+src/rarefold/common/__pycache__/
+src/rarefold/data/__pycache__/
+src/rarefold/data/tools/__pycache__/
+src/net/src/net/alphafold/model/__pycache__/
+src/rarefold/model/tf/__pycache__/
