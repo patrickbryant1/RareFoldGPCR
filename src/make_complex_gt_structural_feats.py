@@ -2,13 +2,12 @@ import os
 import numpy as np
 import argparse
 import sys
-sys.path.insert(0, '/proj/berzelius-2023-267/users/x_patbr/software/rare_fold/src/net/')
 from Bio.PDB.internal_coords import *
 from Bio.PDB.PDBParser import PDBParser
 from Bio.PDB import MMCIFParser
 from Bio.PDB.Polypeptide import is_aa
-from alphafold.model import quat_affine
-from alphafold.common import residue_constants
+from rarefold.model import quat_affine
+from rarefold.common import residue_constants
 import pickle
 
 import pdb
@@ -241,4 +240,3 @@ features_output_path = os.path.join(outdir, 'complex_structure_features.pkl')
 with open(features_output_path, 'wb') as f:
     pickle.dump(structure_feats, f, protocol=4)
 print('Saved features to',features_output_path)
-

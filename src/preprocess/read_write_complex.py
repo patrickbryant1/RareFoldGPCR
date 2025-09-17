@@ -15,7 +15,8 @@ parser = argparse.ArgumentParser(description = '''Parse cif file, read target pr
                                                 ''')
 
 parser.add_argument('--structure', nargs=1, type= str, default=sys.stdin, help = 'Path to structure file.')
-parser.add_argument('--meta', nargs=1, type= str, default=sys.stdin, help = 'Path to csv with data info/meta.')
+parser.add_argument('--rec_chain', nargs=1, type= str, default=sys.stdin, help = 'Receptor chain in the structure file.')
+parser.add_argument('--pep_chain', nargs=1, type= str, default=sys.stdin, help = 'Peptide chain in the structure file (if using).')
 parser.add_argument('--outdir', nargs=1, type= str, default=sys.stdin, help = 'Path to output directory. Include /in end')
 
 ##############FUNCTIONS##############
@@ -140,7 +141,7 @@ def write_pdb(coords, seq, resnos, atoms, bfacs, occupancy, chains, outdir, pdbi
     """
 
 
-    chain_letters = 'ABCDEFGHIJ'
+    chain_letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'
     #Open file
     outname = outdir+pdbid+'.pdb'
     atm_no=0
@@ -159,36 +160,28 @@ def write_pdb(coords, seq, resnos, atoms, bfacs, occupancy, chains, outdir, pdbi
 #Parse args
 args = parser.parse_args()
 #Data
-structure_dir = args.structure_dir[0]
-meta = pd.read_csv(args.meta[0])
-line_number = args.line_number[0]
+#Read structure
+model_coords, model_seqs, model_3seq, model_u3seq, model_resnos, model_atoms, model_bfactors, model_occupancy, chain_types = read_pdb(args.structure[0])
+rec_chain = args.rec_chain[0]
+try:
+    pep_chain = args.pep_chain[0]
+    print('Using peptide chain', pep_chain)
+    chains = [rec_chain, pep_chain]
+except:
+    'Print no peptide chain provided'
+    pep_chain = None
+    chains = [rec_chain]
 outdir = args.outdir[0]
 
-#Read structure
-row = meta.loc[line_number]
-model_coords, model_seqs, model_3seq, model_u3seq, model_resnos, model_atoms, model_bfactors, model_occupancy, chain_types = read_pdb(structure_dir+row.PDB+'.cif.gz')
-gpcr_chain = row['Preferred chain']
-
-#Go through the chains and fetch the peptide (<50 AA and contacts with gpcr chain)
-contacts_per_peptide = {'chain':[], 'contacts':[]}
-for chain in np.setdiff1d([*model_coords.keys()], gpcr_chain):
-    if len(model_seqs[chain])<50:
-        #Contacts with gpcr chain
-        cat_coords = np.concatenate([model_coords[chain], model_coords[gpcr_chain]])
-        dmat = np.sqrt(np.sum((cat_coords[:,None]-cat_coords[None,:])**2,axis=-1))
-        l1 = len(model_coords[chain])
-        if_region = dmat[:l1, l1:]
-        if np.argwhere(if_region<5).shape[0]>20:
-            contacts_per_peptide['chain'].append(chain)
-            contacts_per_peptide['contacts'].append(np.argwhere(if_region<5).shape[0])
+#Write receptor chain as one letter for MSA search
+seqlen = len(model_seqs[rec_chain])
+write_fasta(model_seqs[rec_chain], outdir, 'receptor', seqlen)
+print('Receptor fasta of length', seqlen, 'saved to', outdir+'receptor.fasta')
 
 #Write peptide chain as 3seq
-outdir = outdir+row.PDB+'/complex/'
-if not os.path.exists(outdir):
-    os.mkdir(outdir)
-best_peptide_chain = contacts_per_peptide['chain'][np.argmax(contacts_per_peptide['contacts'])]
-seqlen = len(model_seqs[best_peptide_chain])
-write_fasta('-'.join(model_u3seq[best_peptide_chain]), outdir, row.PDB+'_'+best_peptide_chain, seqlen)
-print('Peptide fasta saved to', outdir+row.PDB+'_'+best_peptide_chain+'.fasta')
+seqlen = len(model_seqs[pep_chain])
+write_fasta('-'.join(model_u3seq[pep_chain]), outdir, 'peptide', seqlen)
+print('Peptide fasta of length', seqlen, 'saved to', outdir+'peptide.fasta')
+
 #Write the complex
-write_pdb(model_coords, model_3seq, model_resnos, model_atoms, model_bfactors, model_occupancy, [gpcr_chain, best_peptide_chain], outdir, row.PDB+'_peptide_complex')
+write_pdb(model_coords, model_3seq, model_resnos, model_atoms, model_bfactors, model_occupancy, chains, outdir, 'extracted_complex')

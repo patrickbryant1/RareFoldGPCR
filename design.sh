@@ -3,24 +3,37 @@
 #file by setting what part of the natural peptide agonist (GLP-1) to scaffold.
 #It can also be ignored (e.g. for de novo cyclic design) by setting scaffold to "NA"
 
+BASE=. #Change this depending on your local path
 ##########First, let's process the input we need for the design##########
 PRED_ID=6X18
-DATA_DIR=./data/gpcrdb/design_test_case/$PRED_ID
+DATA_DIR=$BASE/data/design_test_case/$PRED_ID
 GPCR_COMPLEX=$DATA_DIR/6X18.cif #https://www.rcsb.org/3d-view/6X18
 
 #1. Extract the chains you want from the complex
+#This also writes fasta files for MSA generation
 REC_CHAIN=R
 PEP_CHAIN=P #If not using - leave empty
+python3 $BASE/src/preprocess/read_write_complex.py --structure $GPCR_COMPLEX \
+--rec_chain $REC_CHAIN --pep_chain $PEP_CHAIN --outdir $DATA_DIR/
 
-python3 ./src/preprocess/read_write_complex.py
-#2. Extract fasta sequence from the target for design
+#2. Create an MSA with HHblits
+REC_FASTA=$DATA_DIR'/receptor.fasta'
+REC_MSA=$DATA_DIR'/receptor.a3m'
+HHBLITSDB=$BASE/data/uniclust30_2018_08/uniclust30_2018_08
+if test -f $REC_MSA; then
+	echo $REC_MSA exists
+else
+	$BASE/hh-suite/build/bin/hhblits -i $REC_FASTA -d $HHBLITSDB -E 0.001 -all -n 2 -oa3m $REC_MSA
+fi
 
-
-
+#3. Make iput structural feats (if using) - these are the feats used for trainging as well
+python3 ./src/make_complex_gt_structural_feats.py --input_pdb $DATA_DIR/extracted_complex.pdb \
+--outdir $DATA_DIR/
 
 
 MSA_FEATS=$DATA_DIR/msa_features.pkl
 NUM_REC=3 #For difficult receptors (low plDDT) - run with 8
+#You can find the extracted bind sec and binder length in the peptide fasta (see above)
 BIND_SEQ='HIS-ALA-GLU-GLY-THR-PHE-THR-SER-ASP-VAL-SER-SER-TYR-LEU-GLU-GLY-GLN-ALA-ALA-LYS-GLU-PHE-ILE-ALA-TRP-LEU-VAL-LYS-GLY-ARG'
 BIND_LENGTH=30
 NITER=1000
