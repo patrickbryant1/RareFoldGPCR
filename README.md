@@ -7,7 +7,7 @@ noncanonical amino acids (NCAAs) seen in RareFold to the structure prediction of
 seen NCAA-based GPCR modulators.
 
 RareFoldGPCR (RFG) supports 49 different amino acid types.\
-The 20 regular ones, and 29 **rare** ones:
+The 20 regular ones, and 29 **RARE** ones:
 MSE, TPO, MLY, CME, PTR, SEP,SAH, CSO, PCA, KCX, CAS, CSD, MLZ, OCS, ALY, CSS, CSX, HIC, HYP, YCM, YOF, M3L, PFF, CGU,FTR, LLP, CAF, CMH, MHO
 
 <img src="./data/RFG.svg"/>
