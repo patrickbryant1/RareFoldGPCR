@@ -49,7 +49,7 @@ PARAMS=$BASE/data/params/complex_params26500.npy
 RARE_AAS="MSE,MLY,PTR,SEP,TPO,MLZ,ALY,HIC,HYP,M3L,PFF,MHO" #Pick from MSE, TPO, MLY, CME, PTR, SEP,SAH, CSO, PCA, KCX, CAS, CSD, MLZ, OCS, ALY, CSS, CSX, HIC, HYP, YCM, YOF, M3L, PFF, CGU,FTR, LLP, CAF, CMH, MHO
 CYC_OFFSET=False #Cyclic or not - bad idea to use with scaffolding
 NUM_CLUSTS=128
-OUTDIR=../../data/gpcrdb/design_test_case/
+OUTDIR=$DATA_DIR/
 
 python3 $BASE/src/design_scaffold_struc_feats.py --predict_id $PRED_ID \
 --MSA_feats $MSA_FEATS \
