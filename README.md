@@ -49,4 +49,5 @@ bash design.sh
 If you want to use your target, simply replace the structure file for processing
 in "design.sh" with a path for a new one. This will take care of all feature generation.
 Note that RareFoldGPCR is purely sequence based, but can use structural input for e.g.
-scaffolding or for biasing the design towards certain states.
+scaffolding or for biasing the design towards certain states. \
+We have included the structure as a starting point here to make it easy for you to start designing.
