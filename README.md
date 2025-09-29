@@ -51,3 +51,15 @@ in "design.sh" with a path for a new one. This will take care of all feature gen
 Note that RareFoldGPCR is purely sequence based, but can use structural input for e.g.
 scaffolding or for biasing the design towards certain states. \
 We have included the structure as a starting point here to make it easy for you to start designing.
+
+
+# Citation
+If you use RareFoldGPCR in your research, please cite
+
+
+
+Li Q, Daumiller D, Bryant P. RareFold: Structure prediction and design of proteins with noncanonical amino acids. bioRxiv. 2025. p. 2025.05.19.654846. doi:10.1101/2025.05.19.654846
+[link to paper](https://www.biorxiv.org/content/10.1101/2025.05.19.654846v1)
+
+# Data
+https://zenodo.org/uploads/15180406
