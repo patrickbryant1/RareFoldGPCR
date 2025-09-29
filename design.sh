@@ -30,10 +30,11 @@ python3 $BASE/src/make_complex_gt_structural_feats.py --input_pdb $DATA_DIR/extr
 --outdir $DATA_DIR/
 
 #4. Make MSA feats
---continue here--
+python3 $BASE/src/make_msa_seq_feats.py --input_fasta_path $REC_FASTA \
+--input_msas $REC_MSA --outdir $DATA_DIR/
 
 
-MSA_FEATS=$DATA_DIR/msa_features.pkl
+MSA_FEATS=$DATA_DIR/receptor_msa_features.pkl
 NUM_REC=3 #For difficult receptors (low plDDT) - run with 8
 #You can find the extracted bind sec and binder length in the peptide fasta (see above)
 BIND_SEQ='HIS-ALA-GLU-GLY-THR-PHE-THR-SER-ASP-VAL-SER-SER-TYR-LEU-GLU-GLY-GLN-ALA-ALA-LYS-GLU-PHE-ILE-ALA-TRP-LEU-VAL-LYS-GLY-ARG'

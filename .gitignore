@@ -5,3 +5,4 @@ src/rarefold/data/tools/__pycache__/
 src/net/src/net/alphafold/model/__pycache__/
 src/rarefold/model/tf/__pycache__/
 src/rarefold/model/__pycache__
+data/params

@@ -10,6 +10,7 @@ RareFoldGPCR (RFG) supports 49 different amino acid types.\
 The 20 regular ones, and 29 **rare** ones:
 MSE, TPO, MLY, CME, PTR, SEP,SAH, CSO, PCA, KCX, CAS, CSD, MLZ, OCS, ALY, CSS, CSX, HIC, HYP, YCM, YOF, M3L, PFF, CGU,FTR, LLP, CAF, CMH, MHO
 
+<img src="./data/RFG.svg"/>
 
 # LICENSE
 RareFoldGPCR is available under the [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0).  \
@@ -44,3 +45,8 @@ Run the test case (a few minutes)
 micromamba activate rarefold
 bash design.sh
 ```
+
+If you want to use your target, simply replace the structure file for processing
+in "design.sh" with a path for a new one. This will take care of all feature generation.
+Note that RareFoldGPCR is purely sequence based, but can use structural input for e.g.
+scaffolding or for biasing the design towards certain states.
