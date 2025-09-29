@@ -26,6 +26,7 @@ from scipy.special import softmax
 import copy
 from ast import literal_eval
 from Bio.SVDSuperimposer import SVDSuperimposer
+import re
 
 import pdb
 
@@ -154,7 +155,7 @@ def init_features(msa_feature_dict, structure_feats, binder_length, config):
         rec_chain, pep_chain = chains
     else:
         rec_chain = chains[0]
-    pdb.set_trace()
+
     #aatype
     new_feature_dict['int_seq'] = np.concatenate((np.argmax(msa_feature_dict['aatype'],axis=1), np.zeros(binder_length, dtype=int)),axis=0)
     #between_segment_residues
@@ -487,6 +488,12 @@ def design_binder(config,
 
     #Load params (need to do this here - need to enable GPU through jax first)
     params = np.load(params, allow_pickle=True)
+    #Fix naming - the params are saved using an old naming (alphafold)
+    new_params = {}
+    for key in params:
+        new_key = re.sub('alphafold', 'rarefold', key)
+        new_params[new_key] = params[key]
+    params = new_params
 
     print('Making feats...')
     #Make feature dicts for the batch
@@ -532,9 +539,6 @@ def design_binder(config,
             except:
                 sequence_scores[col] = [*score_df[col].values]
 
-        if 'receptor_rmsd' not in [*score_df.columns]:
-            sequence_scores['receptor_rmsd'] = [literal_eval(x) for x in score_df['scaffold_rmsd'].values]
-
         #Reset starting point to min
         best_inds = np.argmin(sequence_scores['loss'],axis=0)
         int_binder_seqs = []
@@ -551,7 +555,8 @@ def design_binder(config,
         prev_seqs = np.array([int_binder_seqs]) #Define
 
 
-
+    print('Starting design run...')
+    print('Saving designs to', outdir)
     #Iterate: mutate - score - repeat
     for niter in range(len(sequence_scores['iteration']), num_iterations+1):
         #Can't prefetch - dependent on the previous iter
@@ -560,22 +565,22 @@ def design_binder(config,
         mut_seqs = [mutate_sequence(int_binder_seqs[i], prev_seqs[:,i], all_AA_triplets, selected_AA_index, scaffold_pos) for i in range(batch_size)]
         int_binder_seqs = [x[0] for x in mut_seqs]
         binder_seqs = [x[1] for x in mut_seqs]
-        print('Mutating sequences took', time.time() - t_0,'s')
+        print('Mutating sequences took', np.round(time.time() - t_0, 2),'s')
 
         #Update feats with binder seq
         t_0 = time.time()
         batch = update_peptide_batch_feats(batch, np.array(int_binder_seqs), binder_length, num_AAs, restype_atom_mappings)
-        print('Making new feats took', time.time() - t_0,'s')
+        print('Making new feats took', np.round(time.time() - t_0, 2),'s')
 
         #Predict - vmap over batch dim
         t_0 = time.time()
         prediction_result = vmap_apply_fwd(params, rng, batch)
-        print('Prediction took', time.time() - t_0,'s')
+        print('Prediction took', np.round(time.time() - t_0, 2),'s')
 
         #Get loss
         t_0 = time.time()
         iter_loss_metrics = [get_loss(prediction_result, i, scaffold_pos, batch, binder_length) for i in range(batch_size)]
-        print('Loss calcs took', time.time() - t_0,'s')
+        print('Loss calcs took', np.round(time.time() - t_0, 2),'s')
 
         t_0 = time.time()
         if_dist_binder = np.array([x[0] for x in iter_loss_metrics])

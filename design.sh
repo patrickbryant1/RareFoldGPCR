@@ -36,21 +36,22 @@ python3 $BASE/src/make_msa_seq_feats.py --input_fasta_path $REC_FASTA \
 
 MSA_FEATS=$DATA_DIR/receptor_msa_features.pkl
 NUM_REC=3 #For difficult receptors (low plDDT) - run with 8
-#You can find the extracted bind sec and binder length in the peptide fasta (see above)
+#You can find the extracted bind sec and binder length in the peptide fasta (./data/design_test_case/6X18/peptide.fasta)
+#Keep this empty if not using or set the scaffold type to "NA"
 BIND_SEQ='HIS-ALA-GLU-GLY-THR-PHE-THR-SER-ASP-VAL-SER-SER-TYR-LEU-GLU-GLY-GLN-ALA-ALA-LYS-GLU-PHE-ILE-ALA-TRP-LEU-VAL-LYS-GLY-ARG'
-BIND_LENGTH=30
-NITER=1000
+BIND_LENGTH=30 #This information is also in ./data/design_test_case/6X18/peptide.fasta
+NITER=1000 #How many iterations to run
 SCAFFOLD='nterm' #centre/nterm/cterm/NA - decides what part of the native peptide (chain B) to scaffold
-NUM_SC_RESIS=5
-STRUCT_FEATS=$DATA_DIR/complex/complex_structure_features.pkl
-BS=1
+NUM_SC_RESIS=20
+STRUCT_FEATS=$DATA_DIR/complex_structure_features.pkl
+BS=1 #Batch size - you can usually run many independent threads on one GPU
 PARAMS=$BASE/data/params/complex_params26500.npy
-RARE_AAS="MSE,MLY,PTR,SEP,TPO,MLZ,ALY,HIC,HYP,M3L,PFF,MHO"
-CYC_OFFSET=False
+RARE_AAS="MSE,MLY,PTR,SEP,TPO,MLZ,ALY,HIC,HYP,M3L,PFF,MHO" #Pick from MSE, TPO, MLY, CME, PTR, SEP,SAH, CSO, PCA, KCX, CAS, CSD, MLZ, OCS, ALY, CSS, CSX, HIC, HYP, YCM, YOF, M3L, PFF, CGU,FTR, LLP, CAF, CMH, MHO
+CYC_OFFSET=False #Cyclic or not - bad idea to use with scaffolding
 NUM_CLUSTS=128
 OUTDIR=../../data/gpcrdb/design_test_case/
 
-python3 ./design_scaffold_struc_feats.py --predict_id $PRED_ID \
+python3 $BASE/src/design_scaffold_struc_feats.py --predict_id $PRED_ID \
 --MSA_feats $MSA_FEATS \
 --num_recycles $NUM_REC \
 --binder_sequence $BIND_SEQ \
