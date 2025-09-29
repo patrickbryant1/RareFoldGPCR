@@ -48,7 +48,8 @@ BS=1 #Batch size - you can usually run many independent threads on one GPU
 PARAMS=$BASE/data/params/complex_params26500.npy
 RARE_AAS="MSE,MLY,PTR,SEP,TPO,MLZ,ALY,HIC,HYP,M3L,PFF,MHO" #Pick from MSE, TPO, MLY, CME, PTR, SEP,SAH, CSO, PCA, KCX, CAS, CSD, MLZ, OCS, ALY, CSS, CSX, HIC, HYP, YCM, YOF, M3L, PFF, CGU,FTR, LLP, CAF, CMH, MHO
 CYC_OFFSET=False #Cyclic or not - bad idea to use with scaffolding
-NUM_CLUSTS=128
+NUM_CLUSTS=128 #Number of MSA clusts - increase for difficult targets
+SAVE_BEST_ONLY=False #Save best only or not
 OUTDIR=$DATA_DIR/
 
 python3 $BASE/src/design_scaffold_struc_feats.py --predict_id $PRED_ID \
@@ -65,4 +66,5 @@ python3 $BASE/src/design_scaffold_struc_feats.py --predict_id $PRED_ID \
 --rare_AAs $RARE_AAS \
 --cyclic_offset $CYC_OFFSET \
 --num_clusters $NUM_CLUSTS \
+--save_best_only $SAVE_BEST_ONLY \
 --outdir $OUTDIR

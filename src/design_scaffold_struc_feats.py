@@ -59,6 +59,7 @@ parser.add_argument('--params', nargs=1, type= str, default=sys.stdin, help = 'P
 parser.add_argument('--rare_AAs', nargs=1, type= str, default=sys.stdin, help = 'List of rare amino acids to use in the design.')
 parser.add_argument('--cyclic_offset', nargs=1, type= str, default=sys.stdin, help = 'Use a cyclic offset for the binder (True) or not (False).')
 parser.add_argument('--num_clusters', nargs=1, type= int, default=sys.stdin, help = 'Number of MSA clusters to use.')
+parser.add_argument('--save_best_only', nargs=1, type= str, default=sys.stdin, help = 'Save only design improvements (True), otherwise save all.')
 parser.add_argument('--outdir', nargs=1, type= str, default=sys.stdin, help = 'Path to output directory. Include /in end')
 
 ##############FUNCTIONS##############
@@ -434,6 +435,7 @@ def design_binder(config,
                 binder_sequence=None,
                 scaffold_mode=None,
                 num_resis_to_scaffold=0,
+                save_best_only='False',
                 outdir=None):
     """Design a binder
     """
@@ -622,9 +624,12 @@ def design_binder(config,
         int_binder_seqs = []
         for i in range(len(best_inds)):
             int_binder_seqs.append(sequence_scores['int_seq'][best_inds[i]][i])
-            #Check if improvement --> save
-            if best_inds[i]==len(sequence_scores['loss'])-1:
-                #Save structure
+            if save_best_only=='True':
+                #Check if improvement --> save
+                if best_inds[i]==len(sequence_scores['loss'])-1:
+                    #Save structure
+                    save_structure(batch, prediction_result, i, 'unrelaxed_'+str(niter), outdir)
+            else:
                 save_structure(batch, prediction_result, i, 'unrelaxed_'+str(niter), outdir)
 
         #Update prev seqs
@@ -688,6 +693,7 @@ if cyclic_offset=='True':
 else:
     cyclic_offset=None
 num_clusters = args.num_clusters[0]
+save_best_only = args.save_best_only[0]
 outdir = args.outdir[0]
 
 
@@ -710,4 +716,5 @@ design_binder(config.CONFIG,
             binder_sequence = binder_sequence,
             scaffold_mode = scaffold_mode,
             num_resis_to_scaffold = num_resis_to_scaffold,
+            save_best_only = save_best_only,
             outdir=outdir)
