@@ -51,6 +51,7 @@ parser.add_argument('--num_recycles', nargs=1, type= int, default=sys.stdin, hel
 parser.add_argument('--binder_sequence', nargs=1, type= str, default=sys.stdin, help = 'Sequence for a known binder in 3-letter code.')
 parser.add_argument('--binder_length', nargs=1, type= int, default=sys.stdin, help = 'Length of binder to be designed.')
 parser.add_argument('--num_iterations', nargs=1, type= int, default=sys.stdin, help = 'Number of iterations to run.')
+parser.add_argument('--resample_every_n', nargs=1, type= int, default=sys.stdin, help = 'How often to resample the MSA - avoids local minima.')
 parser.add_argument('--scaffold_mode', nargs=1, type= str, default=sys.stdin, help = 'How to scaffold: NA, centre, nterm, cterm.')
 parser.add_argument('--num_resis_to_scaffold', nargs=1, type= int, default=sys.stdin, help = 'Number of residues to scaffold (linear selection).')
 parser.add_argument('--structure_feats', nargs=1, type= str, default=sys.stdin, help = 'Structure features.')
@@ -429,6 +430,7 @@ def design_binder(config,
                 num_recycles=3,
                 binder_length=10,
                 num_iterations=1000,
+                resample_every_n=100,
                 batch_size=1,
                 params=None,
                 rare_AAs=[''],
@@ -569,6 +571,17 @@ def design_binder(config,
         binder_seqs = [x[1] for x in mut_seqs]
         print('Mutating sequences took', np.round(time.time() - t_0, 2),'s')
 
+        if niter%resample_every_n==0:
+            print('Resampling MSA...')
+            #Reload batch
+            init_feature_dicts = [init_features(MSA_feats, structure_feats, binder_length, config) for x in range(batch_size)]
+            batch = {}
+            for key in init_feature_dicts[0]:
+                batch[key] = np.array([init_feature_dicts[x][key] for x in range(batch_size)])
+                batch[key] = np.reshape(batch[key], (batch_size, 1, *batch[key].shape[1:]))
+            batch['num_iter_recycling'] = np.zeros((batch_size, 1,))
+            batch['num_iter_recycling'][:] = num_recycles
+
         #Update feats with binder seq
         t_0 = time.time()
         batch = update_peptide_batch_feats(batch, np.array(int_binder_seqs), binder_length, num_AAs, restype_atom_mappings)
@@ -680,6 +693,7 @@ num_recycles = args.num_recycles[0]
 binder_sequence = args.binder_sequence[0]
 binder_length = args.binder_length[0]
 num_iterations = args.num_iterations[0]
+resample_every_n = args.resample_every_n[0]
 scaffold_mode = args.scaffold_mode[0]
 num_resis_to_scaffold = args.num_resis_to_scaffold[0]
 binder_length = args.binder_length[0]
@@ -710,6 +724,7 @@ design_binder(config.CONFIG,
             num_recycles=num_recycles,
             binder_length=binder_length,
             num_iterations=num_iterations,
+            resample_every_n=resample_every_n,
             batch_size=batch_size,
             params=params,
             rare_AAs=rare_AAs,

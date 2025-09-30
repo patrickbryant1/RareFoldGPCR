@@ -41,6 +41,7 @@ NUM_REC=3 #For difficult receptors (low plDDT) - run with 8
 BIND_SEQ='HIS-ALA-GLU-GLY-THR-PHE-THR-SER-ASP-VAL-SER-SER-TYR-LEU-GLU-GLY-GLN-ALA-ALA-LYS-GLU-PHE-ILE-ALA-TRP-LEU-VAL-LYS-GLY-ARG'
 BIND_LENGTH=30 #This information is also in ./data/design_test_case/6X18/peptide.fasta
 NITER=1000 #How many iterations to run
+RESAMPLE_INTERVAL=100 #How often to resample the MSA - avoid local minima
 SCAFFOLD='nterm' #centre/nterm/cterm/NA - decides what part of the native peptide (chain B) to scaffold
 NUM_SC_RESIS=20
 STRUCT_FEATS=$DATA_DIR/complex_structure_features.pkl
@@ -58,6 +59,7 @@ python3 $BASE/src/design_scaffold_struc_feats.py --predict_id $PRED_ID \
 --binder_sequence $BIND_SEQ \
 --binder_length $BIND_LENGTH \
 --num_iterations $NITER \
+--resample_every_n $RESAMPLE_INTERVAL \
 --scaffold_mode $SCAFFOLD \
 --num_resis_to_scaffold $NUM_SC_RESIS \
 --structure_feats $STRUCT_FEATS \
