@@ -8,7 +8,7 @@ pip install -q --no-warn-conflicts 'jax[cuda12_pip]'==0.4.35 -f https://storage.
 micromamba deactivate
 
 ## Get network parameters for RareFoldGPCR (a few minutes)
-ZENODO=https://zenodo.org/uploads/15180406/files
+ZENODO=https://zenodo.org/records/15180406/files
 wget $ZENODO/complex_params26500.npy
 mkdir data/params
 mv complex_params26500.npy data/params/
