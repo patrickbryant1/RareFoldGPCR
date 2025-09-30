@@ -14,7 +14,7 @@ MSE, TPO, MLY, CME, PTR, SEP,SAH, CSO, PCA, KCX, CAS, CSD, MLZ, OCS, ALY, CSS, C
 
 # LICENSE
 RareFoldGPCR is available under the [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0).  \
-The RareFoldGPCR parameters for prediction and design are made available under the terms of the [CC BY-NC 4.0 license](https://creativecommons.org/licenses/by-nc/4.0/). \
+The RareFoldGPCR parameters for prediction and design are made available under the terms of the [CC BY-NC 4.0 license](https://creativecommons.org/licenses/by-nc/4.0/).
 The design protocol is made available under the terms of the [CC BY-NC 4.0 license](https://creativecommons.org/licenses/by-nc/4.0/).
 
 **You may not use these files except in compliance with the licenses.**
