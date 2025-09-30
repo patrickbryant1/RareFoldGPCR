@@ -57,9 +57,9 @@ We have included the structure as a starting point here to make it easy for you 
 If you use RareFoldGPCR in your research, please cite
 
 
-
-Li Q, Daumiller D, Bryant P. RareFold: Structure prediction and design of proteins with noncanonical amino acids. bioRxiv. 2025. p. 2025.05.19.654846. doi:10.1101/2025.05.19.654846
-[link to paper](https://www.biorxiv.org/content/10.1101/2025.05.19.654846v1)
+and \
+Li Q, Daumiller D, Zuo F, Marcotte H, Pan-Hammarstrom Q and Bryant P. RareFold: Structure prediction and design of proteins with noncanonical amino acids. bioRxiv. 2025. p. 2025.05.19.654846. doi:10.1101/2025.05.19.654846
+[link to paper](https://www.biorxiv.org/content/10.1101/2025.05.19.654846v2.full)
 
 # Data
 https://zenodo.org/uploads/15180406
