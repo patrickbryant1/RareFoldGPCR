@@ -1,5 +1,5 @@
 # RareFoldGPCR
-Structure Prediction and **Design of GPCR Agonists** with Noncanonical Amino Acids
+## Agonist Design Beyond Natural Amino Acids 
 
 By transfer learning from [RareFold](https://github.com/patrickbryant1/RareFold) on
 high-quality structurtes from [GPCRdb](https://gpcrdb.org/), we can learn how to incorporate
