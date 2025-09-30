@@ -6,3 +6,4 @@ src/net/src/net/alphafold/model/__pycache__/
 src/rarefold/model/tf/__pycache__/
 src/rarefold/model/__pycache__
 data/params
+data/design_test_case/6X18/unrelaxed_*
