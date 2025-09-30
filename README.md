@@ -32,7 +32,7 @@ https://mamba.readthedocs.io/en/latest/installation/micromamba-installation.html
 ```
 bash install_dependencies.sh
 ```
-The script:
+Run the script to:
 1. Install the RareFold environment
 2. Get the RareFold parameters for single-chain structure prediction
 3. Get the EvoBindRare parameters for binder design
