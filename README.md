@@ -33,11 +33,10 @@ https://mamba.readthedocs.io/en/latest/installation/micromamba-installation.html
 bash install_dependencies.sh
 ```
 Run the script to:
-1. Install the RareFold environment
-2. Get the RareFold parameters for single-chain structure prediction
-3. Get the EvoBindRare parameters for binder design
-4. Get Uniclust for MSA search
-5. Install HHblits for MSA search
+1. Install the RareFoldGPCR environment
+2. Get the RareFoldGPCR parameters for binder design
+3. Get Uniclust for MSA search
+4. Install HHblits for MSA search
 
 
 # Design using RareFoldGPCR
