@@ -12,6 +12,8 @@ MSE, TPO, MLY, CME, PTR, SEP,SAH, CSO, PCA, KCX, CAS, CSD, MLZ, OCS, ALY, CSS, C
 
 <img src="./data/RFG.svg"/>
 
+[Video explanation](https://docs.google.com/videos/d/1dO4kpnbVCKDPLwa2s89VAxF5oB0bdDU-EDY1RvRp_VI/play#scene=id.g3024923b_0_526)
+
 # LICENSE
 RareFoldGPCR is available under the [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0).  \
 The RareFoldGPCR parameters for prediction and design are made available under the terms of the [CC BY-NC 4.0 license](https://creativecommons.org/licenses/by-nc/4.0/).
@@ -54,10 +56,15 @@ We have included the structure as a starting point here to make it easy for you 
 
 
 # Citation
-If you use RareFoldGPCR in your research, please cite
-
+If you use RareFoldGPCR in your research, please cite:
+\
+RareFoldGPCR: Agonist Design Beyond Natural Amino Acids
+Qiuzhen Li, Thomas Helleday, Patrick Bryant
+bioRxiv 2025.10.01.679733; doi:10.1101/2025.10.01.679733
+[link to paper](https://www.biorxiv.org/content/10.1101/2025.10.01.679733v1)
 
 and \
+
 Li Q, Daumiller D, Zuo F, Marcotte H, Pan-Hammarstrom Q and Bryant P. RareFold: Structure prediction and design of proteins with noncanonical amino acids. bioRxiv. 2025. p. 2025.05.19.654846. doi:10.1101/2025.05.19.654846
 [link to paper](https://www.biorxiv.org/content/10.1101/2025.05.19.654846v2.full)
 
