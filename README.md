@@ -63,7 +63,7 @@ Qiuzhen Li, Thomas Helleday, Patrick Bryant
 bioRxiv 2025.10.01.679733; doi:10.1101/2025.10.01.679733
 [link to paper](https://www.biorxiv.org/content/10.1101/2025.10.01.679733v1)
 
-and \
+and
 
 Li Q, Daumiller D, Zuo F, Marcotte H, Pan-Hammarstrom Q and Bryant P. RareFold: Structure prediction and design of proteins with noncanonical amino acids. bioRxiv. 2025. p. 2025.05.19.654846. doi:10.1101/2025.05.19.654846
 [link to paper](https://www.biorxiv.org/content/10.1101/2025.05.19.654846v2.full)
