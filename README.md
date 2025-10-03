@@ -58,6 +58,7 @@ We have included the structure as a starting point here to make it easy for you 
 # Citation
 If you use RareFoldGPCR in your research, please cite:
 \
+\
 RareFoldGPCR: Agonist Design Beyond Natural Amino Acids
 Qiuzhen Li, Thomas Helleday, Patrick Bryant
 bioRxiv 2025.10.01.679733; doi:10.1101/2025.10.01.679733
