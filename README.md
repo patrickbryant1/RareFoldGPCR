@@ -12,7 +12,7 @@ MSE, TPO, MLY, CME, PTR, SEP,SAH, CSO, PCA, KCX, CAS, CSD, MLZ, OCS, ALY, CSS, C
 
 <img src="./data/RFG.svg"/>
 
-[![Video explanation](https://docs.google.com/videos/d/1dO4kpnbVCKDPLwa2s89VAxF5oB0bdDU-EDY1RvRp_VI/play#scene=id.g3024923b_0_526)](https://docs.google.com/videos/d/1dO4kpnbVCKDPLwa2s89VAxF5oB0bdDU-EDY1RvRp_VI/play#scene=id.g3024923b_0_526)
+[![Video explanation](./data/RFG.svg)](https://docs.google.com/videos/d/1dO4kpnbVCKDPLwa2s89VAxF5oB0bdDU-EDY1RvRp_VI/play#scene=id.g3024923b_0_526)
 
 
 If you like RareFoldGPCR - please **STAR** the repo!
