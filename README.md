@@ -4,13 +4,13 @@
 By transfer learning from [RareFold](https://github.com/patrickbryant1/RareFold) on
 high-quality structurtes from [GPCRdb](https://gpcrdb.org/), we can learn how to incorporate
 noncanonical amino acids (NCAAs) seen in RareFold to the structure prediction of GPCRs without ever having
-seen NCAA-based GPCR modulators.
+seen NCAA-based GPCR modulators. [Read more here](https://www.biorxiv.org/content/10.1101/2025.10.01.679733v1)
 
 RareFoldGPCR (RFG) supports 49 different amino acid types.\
 The 20 regular ones, and 29 **RARE** ones:
 MSE, TPO, MLY, CME, PTR, SEP,SAH, CSO, PCA, KCX, CAS, CSD, MLZ, OCS, ALY, CSS, CSX, HIC, HYP, YCM, YOF, M3L, PFF, CGU,FTR, LLP, CAF, CMH, MHO
 
-<img src="./data/RFG.svg"/>
+Click the image for a video explanation!
 
 [![Video explanation](./data/RFG.svg)](https://docs.google.com/videos/d/1dO4kpnbVCKDPLwa2s89VAxF5oB0bdDU-EDY1RvRp_VI/play#scene=id.g3024923b_0_526)
 
