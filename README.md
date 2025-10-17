@@ -19,10 +19,10 @@ If you like RareFoldGPCR - please **STAR** the repo!
 
 ## Table of Contents
 
-* [Agonist Design Beyond Natural Amino Acids](#rarefoIdgpcr)
-* [LICENSE](#Iicense)
-* [Installation](#instaIlation)
-* [Design using RareFoldGPCR](#design-using-rarefoIdgpcr)
+* [Agonist Design Beyond Natural Amino Acids](#rarefoldgpcr)
+* [LICENSE](#license)
+* [Installation](#installation)
+* [Design using RareFoldGPCR](#design-using-rarefoldgpcr)
 * [Citation](#citation)
 * [Data](#data)
 
