@@ -17,6 +17,15 @@ Click the image for a video explanation!
 
 If you like RareFoldGPCR - please **STAR** the repo!
 
+## Table of Contents
+
+* [Agonist Design Beyond Natural Amino Acids](#rarefoIdgpcr)
+* [LICENSE](#Iicense)
+* [Installation](#instaIlation)
+* [Design using RareFoldGPCR](#design-using-rarefoIdgpcr)
+* [Citation](#citation)
+* [Data](#data)
+
 # LICENSE
 RareFoldGPCR is available under the [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0).  \
 The RareFoldGPCR parameters for prediction and design are made available under the terms of the [CC BY-NC 4.0 license](https://creativecommons.org/licenses/by-nc/4.0/).
