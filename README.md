@@ -19,12 +19,13 @@ If you like RareFoldGPCR - please **STAR** the repo!
 
 ## Table of Contents
 
-* [Agonist Design Beyond Natural Amino Acids](#rarefoldgpcr)
-* [LICENSE](#license)
-* [Installation](#installation)
-* [Design using RareFoldGPCR](#design-using-rarefoldgpcr)
-* [Citation](#citation)
-* [Data](#data)
+1. [Agonist Design Beyond Natural Amino Acids](#rarefoldgpcr)
+2. [LICENSE](#license)
+3. [Installation](#installation)
+4. [Design using RareFoldGPCR](#design-using-rarefoldgpcr)
+5. [Citation](#citation)
+6. [Data](#data)
+7. [The EvoBind ecosystem](#the-evobind-ecosystem)
 
 # LICENSE
 RareFoldGPCR is available under the [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0).  \
@@ -83,3 +84,8 @@ Li Q, Daumiller D, Zuo F, Marcotte H, Pan-Hammarstrom Q and Bryant P. RareFold: 
 
 # Data
 https://zenodo.org/uploads/15180406
+
+# The EvoBind ecosystem
+[EvoBind](https://github.com/patrickbryant1/EvoBind) - designs novel [cyclic] peptide binders based **only on a protein target sequence**. \
+[RareFold](https://github.com/patrickbryant1/RareFold) - prediction & design with noncanonical amino acids \
+[RareFoldGPCR](https://github.com/patrickbryant1/RareFoldGPCR) - GPCR agonist design with noncanonical amino acids
